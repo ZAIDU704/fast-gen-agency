@@ -1,0 +1,10 @@
+{
+  "name": "fast-gen-agency",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FAST GEN Digital Growth Agency — static website for GitHub Pages (no build step).",
+  "scripts": {
+    "test": "node tests/check.mjs",
+    "start": "npx serve ."
+  }
+}
