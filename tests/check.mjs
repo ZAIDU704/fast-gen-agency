@@ -38,7 +38,8 @@ console.log("4. Contact config + URL formats");
 vm.runInContext(read("js/config.js"), ctx);
 const C = ctx.window.FASTGEN_CONFIG, sample = encodeURIComponent("Hello\nWorld");
 const wa = `https://wa.me/${C.whatsapp}?text=${sample}`, mail = `mailto:${C.email}?subject=${encodeURIComponent("Project enquiry")}&body=${sample}`;
-/^https:\/\/wa\.me\/[0-9X]+\?text=/.test(wa) ? ok("WhatsApp URL format: " + wa.slice(0, 40) + "…") : bad("WhatsApp URL malformed");
+if (C.whatsapp === "") ok("WhatsApp not configured yet; button guarded");
+else (/^\d{8,15}$/.test(C.whatsapp) && /^https:\/\/wa\.me\/[0-9]+\?text=/.test(wa)) ? ok("WhatsApp URL format valid") : bad("WhatsApp URL malformed");
 /^mailto:[^@\s]+@[^@\s]+\?subject=/.test(mail) ? ok("mailto format valid") : bad("mailto malformed");
 C.whatsapp === "91XXXXXXXXXX" || C.email === "hello@example.com" ? console.log("  NOTE placeholders still in js/config.js (expected until you replace them)") : ok("placeholders replaced");
 

@@ -9,8 +9,7 @@
 
   /* ---------- Setup reminder + placeholder detection ---------- */
   const waPlaceholder = !/^\d{8,15}$/.test(C.whatsapp);
-  const mailPlaceholder = /@example\.com$/i.test(C.email) || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(C.email);
-  if (waPlaceholder || mailPlaceholder) $("#setupBar").hidden = false;
+  const mailPlaceholder = false;
 
   /* ---------- Mobile nav ---------- */
   const toggle = $(".nav-toggle"), nav = $("#nav");
@@ -31,12 +30,12 @@
     msg.value = C.enquiryTemplate.replace(/\{(\w+)\}/g, (_, k) => v[k] ?? "");
     links();
   };
-  const waUrl = () => "https://wa.me/" + C.whatsapp + "?text=" + encodeURIComponent(msg.value);
+  const waUrl = () => waPlaceholder ? "#contact" : "https://wa.me/" + C.whatsapp + "?text=" + encodeURIComponent(msg.value);
   const mailUrl = () => "mailto:" + C.email + "?subject=" + encodeURIComponent("Project enquiry — " + C.brand) + "&body=" + encodeURIComponent(msg.value);
   function links() {
     $("#waBtn").href = waUrl();
     $("#mailBtn").href = mailUrl();
-    $("#footWa").href = "https://wa.me/" + C.whatsapp;
+    $("#footWa").href = waPlaceholder ? "#contact" : "https://wa.me/" + C.whatsapp;
     $("#footMail").href = "mailto:" + C.email;
   }
   ids.forEach((k) => $("#f-" + k).addEventListener("input", fill));

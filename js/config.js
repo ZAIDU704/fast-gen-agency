@@ -7,8 +7,8 @@
    Once both are replaced, the yellow setup reminder bar disappears.
    ========================================================== */
 window.FASTGEN_CONFIG = {
-  whatsapp: "91XXXXXXXXXX",
-  email: "hello@example.com",
+  whatsapp: "",
+  email: "forbusiness6704@gmail.com",
   brand: "FAST GEN",
   enquiryTemplate:
     "Hello FAST GEN,\n\nName: {name}\nBusiness / page: {business}\nService needed: {service}\nBudget range (INR): {budget}\nDeadline: {deadline}\n\nAbout the project:\n{details}\n\nThank you!"
